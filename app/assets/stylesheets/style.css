@@ -100,7 +100,7 @@ p{
 	text-align:center;
 	background:url(pw_maze_black_2X.png) left top repeat;
 	padding:280px 0;
-	height: 30px !important;
+	/*height: 30px !important;*/
 }
 .logo{
 	width:130px;
