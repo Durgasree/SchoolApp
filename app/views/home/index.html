@@ -1,3 +1,5 @@
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+
 <div style="overflow:hidden;">
     <header class="header" id="header"><!--header-start-->
     	<div class="container">
@@ -6,7 +8,7 @@
             </figure>	
             <h1 class="animated fadeInDown delay-07s">School Name</h1>
             <ul class="we-create animated fadeInUp delay-1s">
-            	<li>school tag line</li>
+            	<li>school tag line - edited</li>
             </ul>
                 <!-- <a class="link animated fadeInUp delay-1s" href="#header">FULL DETAILS</a> -->
         </div>
@@ -279,12 +281,8 @@ we were well fed and drunk all the time!</p>
                 </ul>
             </div>
         	<div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-            	<div class="form">
-                	<input class="input-text" type="text" name="" value="Your Name *" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
-                    <input class="input-text" type="text" name="" value="Your E-mail *" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
-                	<textarea class="input-text text-area" cols="0" rows="0" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">Your Message *</textarea>
-                    <input class="input-btn" type="submit" value="send message">
-                </div>	
+            <h3><i>Address Location :</i></h3>
+          	<div id = "googleMap" class = "panel panel-info" style = "width:100%;height:350px;" ></div>
             </div>
         </div>
 </section>
@@ -390,5 +388,48 @@ $(window).load(function(){
     });
   
 });
+
+  var latitude = 17.7204
+  var longitude = 83.3168
+  initMap(latitude,longitude);
+  function initMap(latitude, longitude) {
+    var location = new google.maps.LatLng(latitude, longitude);
+    console.log(location);
+
+    map = new google.maps.Map(document.getElementById("googleMap"),{
+      center: location,
+      zoom: 8,
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.TOP_CENTER
+      },
+      zoomControl: true,
+      zoomControlOptions: {
+      position: google.maps.ControlPosition.LEFT_CENTER
+      },
+      scaleControl: true,
+      streetViewControl: true,
+      streetViewControlOptions: {
+      position: google.maps.ControlPosition.LEFT_TOP
+      },
+      fullscreenControl: true
+    });
+
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      draggable: true,
+    });
+
+    var infowindow = new google.maps.InfoWindow({
+      content: "siripuram"
+    });
+
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
 
 </script>
